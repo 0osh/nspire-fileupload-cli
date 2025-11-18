@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <libsnpire/nspire.h>
+#include <libnspire/nspire.h>
 
 int std_libnspire_err(int ret) {
 	switch (ret) {
