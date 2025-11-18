@@ -28,7 +28,7 @@ int std_libnspire_err(int ret) {
 	} while (0)
 
 int upload(char *fsrc, const char *fdest) {
-    // printf("Uploading...\n");
+    printf("Uploading %s...\n", fsrc);
     int ret;
     nspire_handle_t *handle;
 
@@ -44,17 +44,17 @@ int upload(char *fsrc, const char *fdest) {
     fseek(f, 0, SEEK_SET);  /* same as rewind(f); */
 
 	// copy file contents to a variable
-    char *fContent = malloc(fsize + 1);
-    fread(fContent, fsize, 1, f);
+    char *fData = malloc(fsize + 1);
+    fread(fData, fsize, 1, f);
     fclose(f);
-    fContent[fsize] = '\0';
+    fContent[fData] = '\0';
 
 	// send it to the calculator
-    ret = nspire_file_write(handle, fdest, fContent, fsize);
+    ret = nspire_file_write(handle, fdest, fData, fsize);
 
 	// free resources
     nspire_free(handle);
 
-    // printf("done\n");
+    puts("done\n");
     return ret;
 }
