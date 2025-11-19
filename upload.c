@@ -15,7 +15,7 @@ int std_libnspire_err(int ret) {
 		case -NSPIRE_ERR_INVALPKT:  return -EIO;
 		case -NSPIRE_ERR_NACK:      return -EIO;
 		case -NSPIRE_ERR_BUSY:      return -EBUSY;
-		case -NSPIRE_ERR_EXISTS     return -EEXIST;
+		case -NSPIRE_ERR_EXISTS:    return -EEXIST;
 		case -NSPIRE_ERR_NONEXIST:  return -ENOENT;
 		case -NSPIRE_ERR_OSFAILED:  return -EPERM;
 		default:                    return -EINVAL;
@@ -47,7 +47,7 @@ int upload(char *fsrc, const char *fdest) {
     char *fData = malloc(fsize + 1);
     fread(fData, fsize, 1, f);
     fclose(f);
-    fContent[fData] = '\0';
+    fData[fsize] = '\0';
 
 	// send it to the calculator
     ret = nspire_file_write(handle, fdest, fData, fsize);
@@ -55,6 +55,6 @@ int upload(char *fsrc, const char *fdest) {
 	// free resources
     nspire_free(handle);
 
-    puts("done\n");
+    puts("done");
     return ret;
 }
