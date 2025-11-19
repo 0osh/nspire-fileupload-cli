@@ -28,7 +28,7 @@ int std_libnspire_err(int ret) {
 	} while (0)
 
 int upload(char *fsrc, const char *fdest) {
-    printf("Uploading %s...\n", fsrc);
+    printf("Uploading %s\n", fsrc);
     int ret;
     nspire_handle_t *handle;
 
