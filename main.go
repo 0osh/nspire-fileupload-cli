@@ -19,11 +19,9 @@ func main() {
 	}
 
 	// get args
+	// no need to free becuase programs ends anyways
 	fsrc := C.CString(os.Args[1])
 	fdest := C.CString(path.Base(os.Args[1]))
-	// free them when the function ends cause good practice ig
-	defer C.free(unsafe.Pointer(fsrc))
-	defer C.free(unsafe.Pointer(fdest))
 
 	// upload file (funciton declated in upload.c)
 	ret := C.upload(fsrc, fdest)
